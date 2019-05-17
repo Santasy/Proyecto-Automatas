@@ -1,0 +1,54 @@
+* Handlers: Adición - Edición - Eliminación
+* l_ : se refiere a una lista o similar
+* f_ : se refiere a una función
+* n_ : se refiere a la longitud o cardinalidad
+
+TODO:
+	- Estructuras:
+		- Programa?/(app?):
+			- Que lleve registro de todos los datos?
+			- Símbolos(map)
+		- Nodo:
+			- Handlers
+			- x, y: Posición en pantalla
+			- bool visitado: (Para cálculo de conexo)
+			- l_relaciones: Enlaces (punteros) hacia otros nodos, con cada símbolo.
+			- f_conectar(a otro nodo)
+			- nivel
+		- Niveles: (Estructura que organiza los nodos de forma radial, por niveles, respecto al nodo 'q0'):
+			-Sub-struct nivel:
+				- id (>= 0): indicará su grado de cercanía con el nodo 'q0'.
+				- n_nodos: Tendrá a mano la cantidad de nodos que posee, para hacer el cálculo y acomodar nodos
+				- nodos: Tendrá a mano los nodos que le corresponden.
+				- f_handlers: Funciones para A.E.E. nodos.
+
+	- Funciones:
+		- While principal: ejecuta mientras hayan palabras
+		- Cleaner: Limpia los datos existentes
+		- Load: Cargar datos (desde un archivo?)
+		- Save: Guardar los datos ingresados actualmente. 
+		- (int)  Hashing(map): Transforma el símbolo en un índice.
+		- (bool) Validación de datos: Para c/tipo de dato.
+		- (bool) Recorrer palabra: (Nihil_-> Recursivo).
+		- Log: Para debug y seguimiento de ejecución.
+		- OPTIONAL:
+			- "Ctrl + z": Para deshacer cambios (volver atrás).
+
+
+	- Interfaz:
+		- Ingreso de datos de entrada (longitudes, nodos, enlaces, símbolos, palabras)
+		- Distribución general (botones, labels, textboxs, zona de dibujo, zona de datos actuales)
+		- Despliegue de nodos y arcos de conexión
+		- OPTIONAL:
+			- Conexión "drag-drop" de nodos.
+
+TASKS:
+	- Nihil:
+		- Nodo básico
+		- Load file
+		- Save file
+		- Recorrer palabra 
+	- Tami:
+		- Hashing de simbolo
+	- Valverde:
+		- (...)
