@@ -6,12 +6,14 @@
 	#include "nodo.h"
 #endif
 
-/*:::::Clase nodo:::::*/
-
 using namespace std;
+
+/*:::::Clase nodo:::::*/
 
 class nodo{
 	public:
+		char *id = new char[10];  // Identificador normalizado
+		char *tag = new char[10]; // Identificador personalizado
 		int x, y;
 		vector<nodo*> enlaces;
 

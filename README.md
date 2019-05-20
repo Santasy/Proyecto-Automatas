@@ -1,6 +1,4 @@
 # Proyecto-Automatas
-Proyecto de trabajo grupal para INFO****, Teoría de Autómatas.
+Proyecto de trabajo grupal para INFO139, Teoría de Autómatas.
 
-
-
-wena los k
+Mayo de 2019.
