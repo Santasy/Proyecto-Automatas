@@ -1,4 +1,9 @@
 # Proyecto-Automatas
 Proyecto de trabajo grupal para INFO139, Teoría de Autómatas.
 
-Mayo de 2019.
+Primer Semestre, 2019.
+
+Integrantes:
+	- Tamara Badilla
+	- Álvaro Valverde
+	- Sebastián Pacheco
