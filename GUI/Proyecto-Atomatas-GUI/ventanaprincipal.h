@@ -23,6 +23,10 @@ public:
 private slots:
     void on_button01_clicked();
 
+    void on_bZoomIn_clicked();
+
+    void on_bZoomOut_clicked();
+
 private:
     Ui::ventanaPrincipal *ui;
 };

@@ -46,6 +46,32 @@
      <string>Leer Archivo</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="bZoomIn">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom +</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="bZoomOut">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Zoom -</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

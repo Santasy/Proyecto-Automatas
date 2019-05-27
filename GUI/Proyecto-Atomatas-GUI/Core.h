@@ -2,10 +2,11 @@
 #define CORE_H
 #include <bits/stdc++.h>
 #include "nodo.h"
+#include "nivel.h"
 
-/* Variables globales: */
 class Core{
 public:
+    /* Atributos: */
     int n_nodos = 0;
     vector<nodo> nodos;
 
@@ -14,6 +15,13 @@ public:
 
     int n_simbolos = 0;
     vector<pair<char, int>> simbolos;
+
+    int n_niveles = 0;
+    vector<nivel> niveles;
+
+    int nodo_r = 15; // Radio del nodo
+    int nivel_r = 100; // Radio del nivel
+    int max_cn = 0;
     /* ---------- */
 
     /* Funciones: */
@@ -25,9 +33,10 @@ public:
     bool checkWord(char *palabra, nodo *actual);
     int getSimIndex(char c);
     bool checkAutom();
-    /* ---------- */
+    bool esFinal(nodo *n);
 
+    void calcularNiveles();
     /* ---------- */
 };
 
-#endif // CORE_SOURCE
+#endif // CORE_H

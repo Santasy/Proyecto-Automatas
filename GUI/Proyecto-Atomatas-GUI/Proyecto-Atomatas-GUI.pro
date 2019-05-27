@@ -27,13 +27,15 @@ SOURCES += \
         main.cpp \
         ventanaprincipal.cpp \
         Core.cpp \
-        framepainter.cpp
+        framepainter.cpp \
+    nivel.cpp
 
 HEADERS += \
         ventanaprincipal.h \
         nodo.h \
         Core.h \
         framepainter.h \
+    nivel.h
 
 FORMS += \
         ventanaprincipal.ui
