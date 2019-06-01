@@ -40,18 +40,21 @@ public:
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         label = new QLabel(ventanaIngreso);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 40, 171, 21));
+        label->setGeometry(QRect(10, 80, 171, 21));
         label_2 = new QLabel(ventanaIngreso);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 70, 261, 21));
+        label_2->setGeometry(QRect(10, 40, 261, 21));
         nNodosQSB = new QSpinBox(ventanaIngreso);
         nNodosQSB->setObjectName(QString::fromUtf8("nNodosQSB"));
-        nNodosQSB->setGeometry(QRect(290, 40, 78, 26));
-        nNodosQSB->setMinimum(1);
+        nNodosQSB->setGeometry(QRect(290, 80, 78, 26));
+        nNodosQSB->setMinimum(0);
+        nNodosQSB->setSingleStep(1);
         nSimbolosQSB = new QSpinBox(ventanaIngreso);
         nSimbolosQSB->setObjectName(QString::fromUtf8("nSimbolosQSB"));
-        nSimbolosQSB->setGeometry(QRect(290, 70, 78, 26));
-        nSimbolosQSB->setMinimum(1);
+        nSimbolosQSB->setEnabled(true);
+        nSimbolosQSB->setGeometry(QRect(290, 40, 78, 26));
+        nSimbolosQSB->setButtonSymbols(QAbstractSpinBox::PlusMinus);
+        nSimbolosQSB->setMinimum(0);
 
         retranslateUi(ventanaIngreso);
         QObject::connect(buttonBox, SIGNAL(accepted()), ventanaIngreso, SLOT(accept()));

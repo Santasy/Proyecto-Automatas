@@ -18,6 +18,9 @@ public:
     explicit ventanaIngreso(QWidget *parent = nullptr);
     ~ventanaIngreso();
 
+    int getNNodos();
+    int getNSimbolos();
+
 private slots:
     void on_nNodosQSB_valueChanged(int value);
     void on_nSimbolosQSB_valueChanged(int value);

@@ -13,6 +13,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QTableWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -20,6 +22,7 @@ class Ui_ventanaTabla
 {
 public:
     QDialogButtonBox *buttonBox;
+    QTableWidget *tableWidget;
 
     void setupUi(QDialog *ventanaTabla)
     {
@@ -31,6 +34,9 @@ public:
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        tableWidget = new QTableWidget(ventanaTabla);
+        tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
+        tableWidget->setGeometry(QRect(60, 20, 256, 192));
 
         retranslateUi(ventanaTabla);
         QObject::connect(buttonBox, SIGNAL(accepted()), ventanaTabla, SLOT(accept()));
