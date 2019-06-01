@@ -2,7 +2,7 @@
 #include "ui_ventanatabla.h"
 
 ventanaTabla::ventanaTabla(QWidget *parent) :
-    QWidget(parent),
+    QDialog(parent),
     ui(new Ui::ventanaTabla)
 {
     ui->setupUi(this);

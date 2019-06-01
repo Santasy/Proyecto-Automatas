@@ -35,6 +35,7 @@ public:
         buttonBox = new QDialogButtonBox(ventanaIngreso);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setGeometry(QRect(30, 240, 341, 32));
+        buttonBox->setCursor(QCursor(Qt::PointingHandCursor));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         label = new QLabel(ventanaIngreso);

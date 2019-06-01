@@ -1,13 +1,13 @@
 #ifndef VENTANATABLA_H
 #define VENTANATABLA_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class ventanaTabla;
 }
 
-class ventanaTabla : public QWidget
+class ventanaTabla : public QDialog
 {
     Q_OBJECT
 

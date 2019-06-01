@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QSpinBox>
+#include <QDialogButtonBox>
 
-//#include "ui_ventanaingreso.h"
 
 namespace Ui {
 class ventanaIngreso;
@@ -21,9 +21,9 @@ public:
 private slots:
     void on_nNodosQSB_valueChanged(int value);
     void on_nSimbolosQSB_valueChanged(int value);
-    //void on_ok_clicked();
-    //void openTableWindow();
 
+
+    void on_buttonBox_accepted();
 
 private:
     Ui::ventanaIngreso *ui;

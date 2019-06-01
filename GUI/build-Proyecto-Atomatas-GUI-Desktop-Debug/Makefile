@@ -746,7 +746,8 @@ main.o: ../Proyecto-Atomatas-GUI/main.cpp ../Proyecto-Atomatas-GUI/ventanaprinci
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Proyecto-Atomatas-GUI/main.cpp
 
 ventanaingreso.o: ../Proyecto-Atomatas-GUI/ventanaingreso.cpp ../Proyecto-Atomatas-GUI/ventanaingreso.h \
-		ui_ventanaingreso.h
+		ui_ventanaingreso.h \
+		../Proyecto-Atomatas-GUI/ventanatabla.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ventanaingreso.o ../Proyecto-Atomatas-GUI/ventanaingreso.cpp
 
 ventanaprincipal.o: ../Proyecto-Atomatas-GUI/ventanaprincipal.cpp ../Proyecto-Atomatas-GUI/ventanaprincipal.h \
