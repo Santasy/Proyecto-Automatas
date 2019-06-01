@@ -29,7 +29,8 @@ SOURCES += \
         ventanaprincipal.cpp \
         Core.cpp \
         framepainter.cpp \
-    nivel.cpp
+    nivel.cpp \
+    ventanatabla.cpp
 
 HEADERS += \
     ventanaingreso.h \
@@ -37,10 +38,12 @@ HEADERS += \
         nodo.h \
         Core.h \
         framepainter.h \
-    nivel.h
+    nivel.h \
+    ventanatabla.h
 
 FORMS += \
         ventanaingreso.ui \
-        ventanaprincipal.ui
+        ventanaprincipal.ui \
+        ventanatabla.ui
 
 DISTFILES +=

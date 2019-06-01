@@ -24,8 +24,8 @@ public:
     QDialogButtonBox *buttonBox;
     QLabel *label;
     QLabel *label_2;
-    QSpinBox *spinBox;
-    QSpinBox *spinBox_2;
+    QSpinBox *nNodosQSB;
+    QSpinBox *nSimbolosQSB;
 
     void setupUi(QDialog *ventanaIngreso)
     {
@@ -43,14 +43,14 @@ public:
         label_2 = new QLabel(ventanaIngreso);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(10, 70, 261, 21));
-        spinBox = new QSpinBox(ventanaIngreso);
-        spinBox->setObjectName(QString::fromUtf8("spinBox"));
-        spinBox->setGeometry(QRect(290, 40, 78, 26));
-        spinBox->setMinimum(1);
-        spinBox_2 = new QSpinBox(ventanaIngreso);
-        spinBox_2->setObjectName(QString::fromUtf8("spinBox_2"));
-        spinBox_2->setGeometry(QRect(290, 70, 78, 26));
-        spinBox_2->setMinimum(1);
+        nNodosQSB = new QSpinBox(ventanaIngreso);
+        nNodosQSB->setObjectName(QString::fromUtf8("nNodosQSB"));
+        nNodosQSB->setGeometry(QRect(290, 40, 78, 26));
+        nNodosQSB->setMinimum(1);
+        nSimbolosQSB = new QSpinBox(ventanaIngreso);
+        nSimbolosQSB->setObjectName(QString::fromUtf8("nSimbolosQSB"));
+        nSimbolosQSB->setGeometry(QRect(290, 70, 78, 26));
+        nSimbolosQSB->setMinimum(1);
 
         retranslateUi(ventanaIngreso);
         QObject::connect(buttonBox, SIGNAL(accepted()), ventanaIngreso, SLOT(accept()));

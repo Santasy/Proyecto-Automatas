@@ -57,18 +57,22 @@ SOURCES       = ../Proyecto-Atomatas-GUI/main.cpp \
 		../Proyecto-Atomatas-GUI/ventanaprincipal.cpp \
 		../Proyecto-Atomatas-GUI/Core.cpp \
 		../Proyecto-Atomatas-GUI/framepainter.cpp \
-		../Proyecto-Atomatas-GUI/nivel.cpp moc_ventanaingreso.cpp \
+		../Proyecto-Atomatas-GUI/nivel.cpp \
+		../Proyecto-Atomatas-GUI/ventanatabla.cpp moc_ventanaingreso.cpp \
 		moc_ventanaprincipal.cpp \
-		moc_framepainter.cpp
+		moc_framepainter.cpp \
+		moc_ventanatabla.cpp
 OBJECTS       = main.o \
 		ventanaingreso.o \
 		ventanaprincipal.o \
 		Core.o \
 		framepainter.o \
 		nivel.o \
+		ventanatabla.o \
 		moc_ventanaingreso.o \
 		moc_ventanaprincipal.o \
-		moc_framepainter.o
+		moc_framepainter.o \
+		moc_ventanatabla.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -247,12 +251,14 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../Proyecto-Atomatas-GUI/nodo.h \
 		../Proyecto-Atomatas-GUI/Core.h \
 		../Proyecto-Atomatas-GUI/framepainter.h \
-		../Proyecto-Atomatas-GUI/nivel.h ../Proyecto-Atomatas-GUI/main.cpp \
+		../Proyecto-Atomatas-GUI/nivel.h \
+		../Proyecto-Atomatas-GUI/ventanatabla.h ../Proyecto-Atomatas-GUI/main.cpp \
 		../Proyecto-Atomatas-GUI/ventanaingreso.cpp \
 		../Proyecto-Atomatas-GUI/ventanaprincipal.cpp \
 		../Proyecto-Atomatas-GUI/Core.cpp \
 		../Proyecto-Atomatas-GUI/framepainter.cpp \
-		../Proyecto-Atomatas-GUI/nivel.cpp
+		../Proyecto-Atomatas-GUI/nivel.cpp \
+		../Proyecto-Atomatas-GUI/ventanatabla.cpp
 QMAKE_TARGET  = Proyecto-Atomatas-GUI
 DESTDIR       = 
 TARGET        = Proyecto-Atomatas-GUI
@@ -261,7 +267,7 @@ TARGET        = Proyecto-Atomatas-GUI
 first: all
 ####### Build rules
 
-Proyecto-Atomatas-GUI: ui_ventanaingreso.h ui_ventanaprincipal.h $(OBJECTS)  
+Proyecto-Atomatas-GUI: ui_ventanaingreso.h ui_ventanaprincipal.h ui_ventanatabla.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Proyecto-Atomatas-GUI/Proyecto-Atomatas-GUI.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -634,9 +640,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/ventanaingreso.h ../Proyecto-Atomatas-GUI/ventanaprincipal.h ../Proyecto-Atomatas-GUI/nodo.h ../Proyecto-Atomatas-GUI/Core.h ../Proyecto-Atomatas-GUI/framepainter.h ../Proyecto-Atomatas-GUI/nivel.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/main.cpp ../Proyecto-Atomatas-GUI/ventanaingreso.cpp ../Proyecto-Atomatas-GUI/ventanaprincipal.cpp ../Proyecto-Atomatas-GUI/Core.cpp ../Proyecto-Atomatas-GUI/framepainter.cpp ../Proyecto-Atomatas-GUI/nivel.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/ventanaingreso.ui ../Proyecto-Atomatas-GUI/ventanaprincipal.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/ventanaingreso.h ../Proyecto-Atomatas-GUI/ventanaprincipal.h ../Proyecto-Atomatas-GUI/nodo.h ../Proyecto-Atomatas-GUI/Core.h ../Proyecto-Atomatas-GUI/framepainter.h ../Proyecto-Atomatas-GUI/nivel.h ../Proyecto-Atomatas-GUI/ventanatabla.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/main.cpp ../Proyecto-Atomatas-GUI/ventanaingreso.cpp ../Proyecto-Atomatas-GUI/ventanaprincipal.cpp ../Proyecto-Atomatas-GUI/Core.cpp ../Proyecto-Atomatas-GUI/framepainter.cpp ../Proyecto-Atomatas-GUI/nivel.cpp ../Proyecto-Atomatas-GUI/ventanatabla.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Proyecto-Atomatas-GUI/ventanaingreso.ui ../Proyecto-Atomatas-GUI/ventanaprincipal.ui ../Proyecto-Atomatas-GUI/ventanatabla.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -668,9 +674,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_ventanaingreso.cpp moc_ventanaprincipal.cpp moc_framepainter.cpp
+compiler_moc_header_make_all: moc_ventanaingreso.cpp moc_ventanaprincipal.cpp moc_framepainter.cpp moc_ventanatabla.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_ventanaingreso.cpp moc_ventanaprincipal.cpp moc_framepainter.cpp
+	-$(DEL_FILE) moc_ventanaingreso.cpp moc_ventanaprincipal.cpp moc_framepainter.cpp moc_ventanatabla.cpp
 moc_ventanaingreso.cpp: ../Proyecto-Atomatas-GUI/ventanaingreso.h \
 		moc_predefs.h \
 		/usr/bin/moc
@@ -693,13 +699,18 @@ moc_framepainter.cpp: ../Proyecto-Atomatas-GUI/framepainter.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/cerdamara/Desktop/U/Proyecto-Automatas/GUI/build-Proyecto-Atomatas-GUI-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/cerdamara/Desktop/U/Proyecto-Automatas/GUI/Proyecto-Atomatas-GUI -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/8.3.0 -I/usr/include/c++/8.3.0/x86_64-pc-linux-gnu -I/usr/include/c++/8.3.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed -I/usr/include ../Proyecto-Atomatas-GUI/framepainter.h -o moc_framepainter.cpp
 
+moc_ventanatabla.cpp: ../Proyecto-Atomatas-GUI/ventanatabla.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/cerdamara/Desktop/U/Proyecto-Automatas/GUI/build-Proyecto-Atomatas-GUI-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/cerdamara/Desktop/U/Proyecto-Automatas/GUI/Proyecto-Atomatas-GUI -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/8.3.0 -I/usr/include/c++/8.3.0/x86_64-pc-linux-gnu -I/usr/include/c++/8.3.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/8.3.0/include-fixed -I/usr/include ../Proyecto-Atomatas-GUI/ventanatabla.h -o moc_ventanatabla.cpp
+
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_ventanaingreso.h ui_ventanaprincipal.h
+compiler_uic_make_all: ui_ventanaingreso.h ui_ventanaprincipal.h ui_ventanatabla.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_ventanaingreso.h ui_ventanaprincipal.h
+	-$(DEL_FILE) ui_ventanaingreso.h ui_ventanaprincipal.h ui_ventanatabla.h
 ui_ventanaingreso.h: ../Proyecto-Atomatas-GUI/ventanaingreso.ui \
 		/usr/bin/uic
 	/usr/bin/uic ../Proyecto-Atomatas-GUI/ventanaingreso.ui -o ui_ventanaingreso.h
@@ -711,6 +722,10 @@ ui_ventanaprincipal.h: ../Proyecto-Atomatas-GUI/ventanaprincipal.ui \
 		../Proyecto-Atomatas-GUI/nodo.h \
 		../Proyecto-Atomatas-GUI/nivel.h
 	/usr/bin/uic ../Proyecto-Atomatas-GUI/ventanaprincipal.ui -o ui_ventanaprincipal.h
+
+ui_ventanatabla.h: ../Proyecto-Atomatas-GUI/ventanatabla.ui \
+		/usr/bin/uic
+	/usr/bin/uic ../Proyecto-Atomatas-GUI/ventanatabla.ui -o ui_ventanatabla.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -726,7 +741,8 @@ main.o: ../Proyecto-Atomatas-GUI/main.cpp ../Proyecto-Atomatas-GUI/ventanaprinci
 		../Proyecto-Atomatas-GUI/framepainter.h \
 		../Proyecto-Atomatas-GUI/Core.h \
 		../Proyecto-Atomatas-GUI/nodo.h \
-		../Proyecto-Atomatas-GUI/nivel.h
+		../Proyecto-Atomatas-GUI/nivel.h \
+		../Proyecto-Atomatas-GUI/ventanaingreso.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Proyecto-Atomatas-GUI/main.cpp
 
 ventanaingreso.o: ../Proyecto-Atomatas-GUI/ventanaingreso.cpp ../Proyecto-Atomatas-GUI/ventanaingreso.h \
@@ -757,6 +773,10 @@ nivel.o: ../Proyecto-Atomatas-GUI/nivel.cpp ../Proyecto-Atomatas-GUI/nivel.h \
 		../Proyecto-Atomatas-GUI/nodo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o nivel.o ../Proyecto-Atomatas-GUI/nivel.cpp
 
+ventanatabla.o: ../Proyecto-Atomatas-GUI/ventanatabla.cpp ../Proyecto-Atomatas-GUI/ventanatabla.h \
+		ui_ventanatabla.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ventanatabla.o ../Proyecto-Atomatas-GUI/ventanatabla.cpp
+
 moc_ventanaingreso.o: moc_ventanaingreso.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ventanaingreso.o moc_ventanaingreso.cpp
 
@@ -765,6 +785,9 @@ moc_ventanaprincipal.o: moc_ventanaprincipal.cpp
 
 moc_framepainter.o: moc_framepainter.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_framepainter.o moc_framepainter.cpp
+
+moc_ventanatabla.o: moc_ventanatabla.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_ventanatabla.o moc_ventanatabla.cpp
 
 ####### Install
 

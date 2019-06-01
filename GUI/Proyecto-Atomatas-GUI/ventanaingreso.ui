@@ -55,7 +55,7 @@
     <string>Ingrese cantidad de símbolos del alfabeto:</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="nNodosQSB">
    <property name="geometry">
     <rect>
      <x>290</x>
@@ -68,7 +68,7 @@
     <number>1</number>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox_2">
+  <widget class="QSpinBox" name="nSimbolosQSB">
    <property name="geometry">
     <rect>
      <x>290</x>
