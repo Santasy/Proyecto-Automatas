@@ -37,6 +37,8 @@ public:
         tableWidget = new QTableWidget(ventanaTabla);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(60, 20, 256, 192));
+        tableWidget->setMinimumSize(QSize(256, 0));
+        tableWidget->setFrameShape(QFrame::StyledPanel);
 
         retranslateUi(ventanaTabla);
         QObject::connect(buttonBox, SIGNAL(accepted()), ventanaTabla, SLOT(accept()));

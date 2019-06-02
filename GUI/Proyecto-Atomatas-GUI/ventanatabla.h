@@ -15,6 +15,8 @@ public:
     explicit ventanaTabla(QWidget *parent = nullptr);
     ~ventanaTabla();
 
+
+
 private:
     Ui::ventanaTabla *ui;
 };

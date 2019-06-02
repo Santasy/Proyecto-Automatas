@@ -7,7 +7,10 @@
 #include <fstream>
 #include <iostream>
 
+#include <vector>
 using namespace std;
+
+vector <int> info;
 
 ventanaIngreso::ventanaIngreso(QWidget *parent) :
     QDialog(parent),
@@ -29,12 +32,8 @@ int ventanaIngreso::getNSimbolos(){
 void ventanaIngreso::on_nSimbolosQSB_valueChanged(int value)
 {
 
-
     int nSimbolos;
-
     nSimbolos =  ui->nNodosQSB->value();
-
-
 
 }
 
@@ -42,7 +41,6 @@ void ventanaIngreso::on_nNodosQSB_valueChanged(int value)
 {
 
     int nNodos;
-
     nNodos =  ui->nNodosQSB->value();
 }
 
@@ -69,6 +67,9 @@ void ventanaIngreso::on_buttonBox_accepted()
     file << nNodos << std::endl;
 
     file.close();
+
+    info.push_back(nSimbolos);
+    info.push_back(nNodos);
 
     ventanaTabla vT;
     vT.setModal(true);
