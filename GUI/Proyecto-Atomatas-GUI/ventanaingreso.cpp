@@ -1,0 +1,93 @@
+#include "ventanaingreso.h"
+#include "ui_ventanaingreso.h"
+#include <QSpinBox>
+
+#include "ventanatabla.h"
+#include "ventanapalabras.h"
+
+#include <fstream>
+#include <iostream>
+
+#include <vector>
+using namespace std;
+
+vector <int> info;
+
+ventanaIngreso::ventanaIngreso(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ventanaIngreso)
+{
+    ui->setupUi(this);
+
+    c_data = new Core();
+}
+
+int ventanaIngreso::getNNodos(){
+    return ui->nNodosQSB->value();
+}
+
+int ventanaIngreso::getNSimbolos(){
+    return ui->nSimbolosQSB->value();
+}
+
+void ventanaIngreso::on_nSimbolosQSB_valueChanged(int value)
+{
+
+    int nSimbolos;
+    nSimbolos =  ui->nNodosQSB->value();
+
+}
+
+void ventanaIngreso::on_nNodosQSB_valueChanged(int value)
+{
+
+    int nNodos;
+    nNodos =  ui->nNodosQSB->value();
+}
+
+
+ventanaIngreso::~ventanaIngreso()
+{
+    delete ui;
+}
+
+
+
+void ventanaIngreso::on_buttonBox_accepted()
+{
+    int nNodos;
+    int nSimbolos;
+
+    ofstream file;
+    file.open("test.txt", ios_base::app);
+
+    nSimbolos = getNSimbolos();
+    nNodos = getNNodos();
+
+    file << nSimbolos << std::endl;
+    file << nNodos << std::endl;
+
+    file.close();
+
+    info.push_back(nSimbolos);
+    info.push_back(nNodos);
+
+    ventanaTabla vT;
+    vT.setModal(true);
+    vT.exec();
+}
+
+void ventanaIngreso::on_buttonBox_clicked(QAbstractButton *button){
+
+}
+
+void ventanaIngreso::on_bLeerArchivo_clicked()
+{
+    ventanapalabras vP;
+    vP.c_data = c_data; // Se le pasa la información
+    vP.c_data->readFromFile("entrada.txt");
+    if(vP.c_data->checkAutom()){
+        vP.setModal(true);
+        vP.exec();
+    }
+}

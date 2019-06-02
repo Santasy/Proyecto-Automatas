@@ -15,13 +15,6 @@ public:
 
     int n_simbolos = 0;
     vector<pair<char, int>> simbolos;
-
-    int n_niveles = 0;
-    vector<nivel> niveles;
-
-    int nodo_r = 15; // Radio del nodo
-    int nivel_r = 100; // Radio del nivel
-    int max_cn = 0;
     /* ---------- */
 
     /* Funciones: */
@@ -34,8 +27,6 @@ public:
     int getSimIndex(char c);
     bool checkAutom();
     bool esFinal(nodo *n);
-
-    void calcularNiveles();
     /* ---------- */
 };
 
