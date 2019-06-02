@@ -1,14 +1,12 @@
 #include "ventanaingreso.h"
 #include "ui_ventanaingreso.h"
 #include <QSpinBox>
-
 #include "ventanatabla.h"
 #include "ventanapalabras.h"
-
 #include <fstream>
 #include <iostream>
-
 #include <vector>
+
 using namespace std;
 
 vector <int> info;
