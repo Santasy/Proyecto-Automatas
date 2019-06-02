@@ -12,36 +12,31 @@ using namespace std;
 
 vector <int> info;
 
-ventanaIngreso::ventanaIngreso(QWidget *parent) :
+ventanaIngreso::ventanaIngreso(QWidget *parent) : //Constructor
     QDialog(parent),
     ui(new Ui::ventanaIngreso)
 {
     ui->setupUi(this);
-    QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(openTableWindow()));
-    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    c_data = new Core();
+    printf("Se ha creado Core.\n");
 }
 
-int ventanaIngreso::getNNodos(){
+int ventanaIngreso::getNNodos(){  //getter del numero de nodos
     return ui->nNodosQSB->value();
 }
 
-int ventanaIngreso::getNSimbolos(){
+int ventanaIngreso::getNSimbolos(){  //getter del numero de simbolos
     return ui->nSimbolosQSB->value();
 }
 
 void ventanaIngreso::on_nSimbolosQSB_valueChanged(int value)
 {
 
-    int nSimbolos;
-    nSimbolos =  ui->nNodosQSB->value();
-
 }
 
 void ventanaIngreso::on_nNodosQSB_valueChanged(int value)
 {
 
-    int nNodos;
-    nNodos =  ui->nNodosQSB->value();
 }
 
 
@@ -54,24 +49,38 @@ ventanaIngreso::~ventanaIngreso()
 
 void ventanaIngreso::on_buttonBox_accepted()
 {
-    int nNodos;
-    int nSimbolos;
-
     ofstream file;
     file.open("test.txt", ios_base::app);
 
-    nSimbolos = getNSimbolos();
-    nNodos = getNNodos();
+    c_data->n_simbolos = getNSimbolos();
+    c_data->n_nodos = getNNodos();
+    file << c_data->n_simbolos << std::endl;
 
-    file << nSimbolos << std::endl;
-    file << nNodos << std::endl;
+    for (int i=0;i < c_data->n_simbolos;i++){
+        if (i<10){
+            file << char(i+48);
+        }
+        else if (i>=10 and i<36) {
+            file << char(i+55);
+        }
+        else if (i>=36 and i<=62){
+            file << char(i+61);
+        }
+
+        file << " ";
+
+    }
+    file << std::endl;
+
+    file << c_data->n_nodos << std::endl;
 
     file.close();
 
-    info.push_back(nSimbolos);
-    info.push_back(nNodos);
+    info.push_back(c_data->n_simbolos);
 
-    ventanaTabla vT;
+    info.push_back(c_data->n_nodos);
+    ventanaTabla vT(this, c_data);
     vT.setModal(true);
     vT.exec();
+
 }

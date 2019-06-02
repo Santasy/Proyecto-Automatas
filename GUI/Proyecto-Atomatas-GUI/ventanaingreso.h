@@ -5,6 +5,7 @@
 #include <QSpinBox>
 #include <QDialogButtonBox>
 #include <vector>
+#include "Core.h"
 
 extern std::vector<int> info;
 
@@ -17,7 +18,7 @@ class ventanaIngreso : public QDialog
     Q_OBJECT
 
 public:
-
+    Core *c_data = nullptr;
     explicit ventanaIngreso(QWidget *parent = nullptr);
     ~ventanaIngreso();
 

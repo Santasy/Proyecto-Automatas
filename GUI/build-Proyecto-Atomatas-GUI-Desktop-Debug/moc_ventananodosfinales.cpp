@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'ventanatabla.h'
+** Meta object code from reading C++ file 'ventananodosfinales.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../Proyecto-Atomatas-GUI/ventanatabla.h"
+#include "../Proyecto-Atomatas-GUI/ventananodosfinales.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'ventanatabla.h' doesn't include <QObject>."
+#error "The header file 'ventananodosfinales.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.12.3. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,27 +20,28 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_ventanaTabla_t {
+struct qt_meta_stringdata_ventanaNodosFinales_t {
     QByteArrayData data[3];
-    char stringdata0[36];
+    char stringdata0[43];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_ventanaTabla_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_ventanaNodosFinales_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_ventanaTabla_t qt_meta_stringdata_ventanaTabla = {
+static const qt_meta_stringdata_ventanaNodosFinales_t qt_meta_stringdata_ventanaNodosFinales = {
     {
-QT_MOC_LITERAL(0, 0, 12), // "ventanaTabla"
-QT_MOC_LITERAL(1, 13, 21), // "on_buttonBox_accepted"
-QT_MOC_LITERAL(2, 35, 0) // ""
+QT_MOC_LITERAL(0, 0, 19), // "ventanaNodosFinales"
+QT_MOC_LITERAL(1, 20, 21), // "on_buttonBox_accepted"
+QT_MOC_LITERAL(2, 42, 0) // ""
 
     },
-    "ventanaTabla\0on_buttonBox_accepted\0"
+    "ventanaNodosFinales\0on_buttonBox_accepted\0"
+    ""
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_ventanaTabla[] = {
+static const uint qt_meta_data_ventanaNodosFinales[] = {
 
  // content:
        8,       // revision
@@ -62,10 +63,10 @@ static const uint qt_meta_data_ventanaTabla[] = {
        0        // eod
 };
 
-void ventanaTabla::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void ventanaNodosFinales::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<ventanaTabla *>(_o);
+        auto *_t = static_cast<ventanaNodosFinales *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->on_buttonBox_accepted(); break;
@@ -75,30 +76,30 @@ void ventanaTabla::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject ventanaTabla::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject ventanaNodosFinales::staticMetaObject = { {
     &QDialog::staticMetaObject,
-    qt_meta_stringdata_ventanaTabla.data,
-    qt_meta_data_ventanaTabla,
+    qt_meta_stringdata_ventanaNodosFinales.data,
+    qt_meta_data_ventanaNodosFinales,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *ventanaTabla::metaObject() const
+const QMetaObject *ventanaNodosFinales::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *ventanaTabla::qt_metacast(const char *_clname)
+void *ventanaNodosFinales::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_ventanaTabla.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_ventanaNodosFinales.stringdata0))
         return static_cast<void*>(this);
     return QDialog::qt_metacast(_clname);
 }
 
-int ventanaTabla::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int ventanaNodosFinales::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
     if (_id < 0)

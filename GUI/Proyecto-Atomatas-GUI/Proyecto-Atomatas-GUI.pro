@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     ventanaingreso.cpp \
+    ventananodosfinales.cpp \
         ventanaprincipal.cpp \
         Core.cpp \
         framepainter.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 
 HEADERS += \
     ventanaingreso.h \
+    ventananodosfinales.h \
         ventanaprincipal.h \
         nodo.h \
         Core.h \
@@ -43,6 +45,7 @@ HEADERS += \
 
 FORMS += \
         ventanaingreso.ui \
+        ventananodosfinales.ui \
         ventanaprincipal.ui \
         ventanatabla.ui
 

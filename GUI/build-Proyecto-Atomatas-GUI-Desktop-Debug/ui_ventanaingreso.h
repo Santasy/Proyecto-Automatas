@@ -47,14 +47,15 @@ public:
         nNodosQSB = new QSpinBox(ventanaIngreso);
         nNodosQSB->setObjectName(QString::fromUtf8("nNodosQSB"));
         nNodosQSB->setGeometry(QRect(290, 80, 78, 26));
-        nNodosQSB->setMinimum(0);
+        nNodosQSB->setMinimum(1);
         nNodosQSB->setSingleStep(1);
         nSimbolosQSB = new QSpinBox(ventanaIngreso);
         nSimbolosQSB->setObjectName(QString::fromUtf8("nSimbolosQSB"));
         nSimbolosQSB->setEnabled(true);
         nSimbolosQSB->setGeometry(QRect(290, 40, 78, 26));
         nSimbolosQSB->setButtonSymbols(QAbstractSpinBox::PlusMinus);
-        nSimbolosQSB->setMinimum(0);
+        nSimbolosQSB->setMinimum(1);
+        nSimbolosQSB->setMaximum(62);
 
         retranslateUi(ventanaIngreso);
         QObject::connect(buttonBox, SIGNAL(accepted()), ventanaIngreso, SLOT(accept()));

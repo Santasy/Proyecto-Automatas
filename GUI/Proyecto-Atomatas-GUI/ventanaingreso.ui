@@ -68,7 +68,7 @@
     </rect>
    </property>
    <property name="minimum">
-    <number>0</number>
+    <number>1</number>
    </property>
    <property name="singleStep">
     <number>1</number>
@@ -90,7 +90,10 @@
     <enum>QAbstractSpinBox::PlusMinus</enum>
    </property>
    <property name="minimum">
-    <number>0</number>
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>62</number>
    </property>
   </widget>
  </widget>
