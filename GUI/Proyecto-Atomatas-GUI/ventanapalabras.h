@@ -14,7 +14,7 @@ class ventanapalabras : public QDialog
     Q_OBJECT
 
 public:
-    explicit ventanapalabras(QWidget *parent = 0);
+    explicit ventanapalabras(QWidget *parent = 0, Core *_core = nullptr);
     ~ventanapalabras();
 
     Core *c_data;

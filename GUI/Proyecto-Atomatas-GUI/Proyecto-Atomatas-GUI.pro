@@ -26,22 +26,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         Core.cpp \
-        nivel.cpp \
     ventanaingreso.cpp \
     ventanatabla.cpp \
-    ventanapalabras.cpp
+    ventanapalabras.cpp \
+    ventananodosfinales.cpp
 
 HEADERS += \
     ventanaingreso.h \
         nodo.h \
         Core.h \
-    nivel.h \
     ventanatabla.h \
-    ventanapalabras.h
+    ventanapalabras.h \
+    ventananodosfinales.h
 
 FORMS += \
         ventanaingreso.ui \
         ventanatabla.ui \
-    ventanapalabras.ui
+    ventanapalabras.ui \
+    ventananodosfinales.ui
 
 DISTFILES +=

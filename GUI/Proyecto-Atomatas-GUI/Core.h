@@ -1,8 +1,8 @@
 #ifndef CORE_H
 #define CORE_H
-#include <bits/stdc++.h>
 #include "nodo.h"
-#include "nivel.h"
+#include <iostream>
+#include <fstream>
 #include <QListWidget>
 
 class Core{
@@ -22,13 +22,13 @@ public:
     Core();
     bool readFromFile(char *ruta);
     bool saveToFile(char *ruta);
-    bool toLog(char *texto);
 
-    bool checkWord(char *palabra, nodo *actual, QListWidget *tabla);
     int getSimIndex(char c);
     bool checkAutom();
     bool esFinal(nodo *n);
+
     bool precheckWord(char *palabra);
+    bool checkWord(char *palabra, nodo *actual, QListWidget *tabla);
     /* ---------- */
 };
 

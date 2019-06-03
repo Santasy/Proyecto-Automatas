@@ -13,13 +13,20 @@ class ventanaTabla : public QDialog
     Q_OBJECT
 
 public:
-    explicit ventanaTabla(QWidget *parent = nullptr);
+    Core *c_data = nullptr;
+
+    explicit ventanaTabla(QWidget *parent = nullptr, Core *_core = nullptr);
     ~ventanaTabla();
 
-    Core *c_data;
+    int getNNodosFinales();
+
+private slots:
+
+    void on_buttonBox_accepted();
 
 private:
     Ui::ventanaTabla *ui;
+
 };
 
 #endif // VENTANATABLA_H

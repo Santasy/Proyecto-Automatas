@@ -18,13 +18,12 @@ class ventanaIngreso : public QDialog
     Q_OBJECT
 
 public:
-
+    Core *c_data = nullptr;
     explicit ventanaIngreso(QWidget *parent = nullptr);
     ~ventanaIngreso();
 
     int getNNodos();
     int getNSimbolos();
-    Core *c_data;
     std::vector<int> info;
 
 private slots:
@@ -32,8 +31,6 @@ private slots:
     void on_nNodosQSB_valueChanged(int value);
     void on_nSimbolosQSB_valueChanged(int value);
     void on_buttonBox_accepted();
-
-    void on_buttonBox_clicked(QAbstractButton *button);
 
     void on_bLeerArchivo_clicked();
 

@@ -4,11 +4,12 @@
 #include <iostream>
 //#include <Qt>
 
-ventanapalabras::ventanapalabras(QWidget *parent) :
+ventanapalabras::ventanapalabras(QWidget *parent, Core *_core) :
     QDialog(parent),
     ui(new Ui::ventanapalabras)
 {
     ui->setupUi(this);
+    c_data = _core;
 
         // Setup tabla:
     ui->tablaResults->setColumnCount(2);
@@ -18,11 +19,30 @@ ventanapalabras::ventanapalabras(QWidget *parent) :
     nItem = new QTableWidgetItem();
     nItem->setText("Palabra");
     ui->tablaResults->setHorizontalHeaderItem(1, nItem);
-        //Lock de tamaños
+        // Lock de tamaños:
     ui->tablaResults->setColumnWidth(0, 80);
     ui->tablaResults->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-
     ui->tablaResults->setRowCount(0);
+        // Print datos de autómata:
+    char *texto = new char[100];
+    char *aux = new char[100];
+        // - Número de Símbolos
+    sprintf(texto, "[%d]: ", c_data->n_simbolos);
+    for(int i = 0; i < c_data->n_simbolos; ++i){
+        sprintf(aux, "%c ", c_data->simbolos[i].first);
+        strcat(texto, aux);
+    }
+    ui->lNS->setText(texto);
+        // - Número de Nodos
+    sprintf(texto, "%d", c_data->n_nodos);
+    ui->lNN->setText(texto);
+        // - Nodos Finales:
+    sprintf(texto, "[%d]: ", c_data->n_finales);
+    for(int i = 0; i < c_data->n_finales; ++i){
+        sprintf(aux, "%d ", c_data->nodos_f[i]);
+        strcat(texto, aux);
+    }
+    ui->lNF->setText(texto);
 }
 
 ventanapalabras::~ventanapalabras()

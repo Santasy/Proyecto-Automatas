@@ -4,8 +4,6 @@
 #include <queue>
 #include <QListWidget>
 
-#define PI 3.14159
-
 using namespace std;
 
 /* Definición de funciones */
@@ -133,8 +131,15 @@ bool Core::checkAutom(){
         }
     }
 
-    if(!resultado) printf("Autómata no está definido correctamente.\n");
-    else printf("Autómata está definido correctamente.\n");
+    if(n_nodos == 0 && n_simbolos == 0 && n_finales == 0){
+        printf("Autómata vacío.\n");
+        resultado = false;
+   }
+
+    if(!resultado)
+        printf("Autómata no está definido correctamente.\n");
+    else
+        printf("Autómata está definido correctamente.\n");
     return resultado;
 }
 
@@ -165,8 +170,6 @@ bool Core::readFromFile(char *ruta){
         nodos.clear();
         for(i = 0; i < n_nodos; i++){ // Se crea cada nodo
             nodo nuevoN;
-            nuevoN.x = 50 * (i + 1);
-            nuevoN.y = 50;
             sprintf(nuevoN.id, "q%d", i);
             nodos.push_back(nuevoN);
         }
