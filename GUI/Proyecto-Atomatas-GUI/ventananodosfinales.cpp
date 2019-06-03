@@ -1,45 +1,42 @@
 #include "ventananodosfinales.h"
 #include "ui_ventananodosfinales.h"
-#include "Core.h"
-#include "ventanapalabras.h"
 
 #include <fstream>
+#include "ventanapalabras.h"
+
+using namespace std;
 
 ventanaNodosFinales::ventanaNodosFinales(QWidget *parent, Core *_core) :
     QDialog(parent),
-    ui(new Ui::ventanaNodosFinales)
-{
+    ui(new Ui::ventanaNodosFinales){
+
     ui->setupUi(this);
+
     c_data = _core;
-
-    int nCol = c_data->n_finales;
-    ui->nodosFinales->setColumnCount(nCol);
-
+    ui->nodosFinales->setColumnCount(c_data->n_finales);
 }
 
-ventanaNodosFinales::~ventanaNodosFinales()
-{
+ventanaNodosFinales::~ventanaNodosFinales(){
     delete ui;
 }
 
 void ventanaNodosFinales::on_buttonBox_accepted()
 {
-    std::ofstream file;
-    file.open("Automata.txt", std::ios_base::app);
+    // Agrega la info. al final de 'Automata.txt'
+    ofstream file;
+    file.open("Automata.txt", ios_base::app); // Para append
 
     int cCount = ui->nodosFinales->columnCount();
-
     for (int j = 0; j < cCount;j++){
-
         file << (ui->nodosFinales->item(0,j)->text() + " ").toStdString();
-
     }
 
-    file << std::endl;
-
+    file << '\n';
     file.close();
+    printf("Se ha terminado creación de 'Automata.txt'\n");
 
-    c_data->readFromFile("Automata.txt");
+        // Crea siguiente ventana:
+    c_data->readFromFile((char*) "Automata.txt");
     ventanapalabras vP(this, c_data);
     vP.setModal(true);
     vP.exec();

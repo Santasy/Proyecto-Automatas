@@ -1,10 +1,13 @@
 #ifndef CORE_H
 #define CORE_H
-#include "nodo.h"
-#include <iostream>
-#include <fstream>
-#include <QListWidget>
 
+#include <QListWidget>
+#include <vector>
+#include "nodo.h"
+
+using namespace std;
+
+/*:::::Clase Core:::::*/
 class Core{
 public:
     /* Atributos: */
@@ -31,5 +34,5 @@ public:
     bool checkWord(char *palabra, nodo *actual, QListWidget *tabla);
     /* ---------- */
 };
-
+/*::::::::::*/
 #endif // CORE_H

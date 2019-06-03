@@ -1,15 +1,10 @@
+#include <fstream>
 #include "Core.h"
-#include <iostream>
-#include <vector>
-#include <queue>
-#include <QListWidget>
 
 using namespace std;
 
 /* Definición de funciones */
-Core::Core(){
-
-}
+Core::Core(){}
 
 bool Core::esFinal(nodo *n){
     for(int i = 0; i < n_finales; ++i){
@@ -20,7 +15,6 @@ bool Core::esFinal(nodo *n){
 }
 
 bool Core::checkWord(char *palabra, nodo *actual, QListWidget *tabla){
-    int i;
     if(actual == nullptr){
         printf("Finalizando antes de leer palabra completa.\n");
         return false;
@@ -173,6 +167,7 @@ bool Core::readFromFile(char *ruta){
             sprintf(nuevoN.id, "q%d", i);
             nodos.push_back(nuevoN);
         }
+            /* Conexiones: */
         int id;
         for(i = 0; i < n_nodos; ++i){ // Se crea cada conexión
             for(j = 0; j < n_simbolos; ++j){ // Por cada símbolo
@@ -201,7 +196,6 @@ bool Core::readFromFile(char *ruta){
 
 bool Core::saveToFile(char *ruta){
     int i, j;
-
     ofstream archivo;
     try{
         archivo.open(ruta);

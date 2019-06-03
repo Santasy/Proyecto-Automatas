@@ -1,102 +1,84 @@
 #include "ventanaingreso.h"
 #include "ui_ventanaingreso.h"
-#include <QSpinBox>
 
+#include <fstream>
+#include <QFileDialog>
 #include "ventanatabla.h"
 #include "ventanapalabras.h"
 
-#include <fstream>
-#include <iostream>
-#include <QFileDialog>
-
-#include <vector>
 using namespace std;
-
-vector <int> info;
 
 ventanaIngreso::ventanaIngreso(QWidget *parent) : //Constructor
     QDialog(parent),
-    ui(new Ui::ventanaIngreso)
-{
+    ui(new Ui::ventanaIngreso){
+
     ui->setupUi(this);
     c_data = new Core();
-   ofstream archivo;
-   archivo.open("Automata.txt");
-   archivo.close();
+        // Limpia 'Automata.txt'
+    ofstream archivo;
+    archivo.open("Automata.txt");
+    archivo.close();
 }
 
-int ventanaIngreso::getNNodos(){  //getter del numero de nodos
-    return ui->nNodosQSB->value();
+void ventanaIngreso::on_nSimbolosQSB_valueChanged(int value){}
+
+void ventanaIngreso::on_nNodosQSB_valueChanged(int value){}
+
+int ventanaIngreso::getNNodos(){
+    ui->nNodosQSB->value();
 }
 
-int ventanaIngreso::getNSimbolos(){  //getter del numero de simbolos
-    return ui->nSimbolosQSB->value();
+int ventanaIngreso::getNSimbolos(){
+    ui->nSimbolosQSB->value();
 }
 
-void ventanaIngreso::on_nSimbolosQSB_valueChanged(int value)
-{
-
-}
-
-void ventanaIngreso::on_nNodosQSB_valueChanged(int value)
-{
-
-}
-
-
-ventanaIngreso::~ventanaIngreso()
-{
+ventanaIngreso::~ventanaIngreso(){
     delete ui;
 }
 
+void ventanaIngreso::on_buttonBox_accepted(){
+    /* - Obtiene datos de interfaz */
+    /* - Guarda en archivo 'Automata.txt' */
 
-
-void ventanaIngreso::on_buttonBox_accepted()
-{
     ofstream file;
-    file.open("Automata.txt", ios_base::app);
+    file.open("Automata.txt", ios_base::app); // Para append
 
     c_data->n_simbolos = getNSimbolos();
     c_data->n_nodos = getNNodos();
     file << c_data->n_simbolos << std::endl;
 
-    for (int i=0;i < c_data->n_simbolos;i++){
-        if (i<10){
-            file << char(i+48);
+    for (int i=0; i < c_data->n_simbolos; ++i){
+        if (i < 10){
+            file << char(i + 48);
         }
-        else if (i>=10 and i<36) {
-            file << char(i+55);
+        else if (i >= 10 and i < 36) {
+            file << char(i + 55);
         }
-        else if (i>=36 and i<=62){
-            file << char(i+61);
+        else if (i >= 36 and i <= 62){
+            file << char(i + 61);
         }
 
-        file << " ";
-
+        file << ' ';
     }
-    file << std::endl;
-
-    file << c_data->n_nodos << std::endl;
+    file << '\n';
+    file << c_data->n_nodos << '\n';
 
     file.close();
 
-    info.push_back(c_data->n_simbolos);
-
-    info.push_back(c_data->n_nodos);
+    // Se crea siguiente ventana:
     ventanaTabla vT(this, c_data);
     vT.setModal(true);
     vT.exec();
 
 }
 
-void ventanaIngreso::on_bLeerArchivo_clicked()
-{
+void ventanaIngreso::on_bLeerArchivo_clicked(){
+    // Se obtiene path desde explorador de archivos:
     QFileDialog qFD;
     qFD.setFileMode(QFileDialog::ExistingFiles);
-    //qFD.exec();
     QString path = qFD.getOpenFileName(this, "Seleccionar archivo", ".", "Archivos de texto (*.txt)");
-    qFD.deleteLater();
 
+    // Se lee .txt, y se crea siguiente ventana:
     c_data->readFromFile((char *) path.toStdString().c_str());
     ventanapalabras vP(this, c_data);
     if(vP.c_data->checkAutom()){

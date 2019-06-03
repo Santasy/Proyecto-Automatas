@@ -1,17 +1,14 @@
 #include "ventanapalabras.h"
 #include "ui_ventanapalabras.h"
-#include <string>
-#include <iostream>
-//#include <Qt>
 
 ventanapalabras::ventanapalabras(QWidget *parent, Core *_core) :
     QDialog(parent),
-    ui(new Ui::ventanapalabras)
-{
+    ui(new Ui::ventanapalabras){
+
     ui->setupUi(this);
     c_data = _core;
 
-        // Setup tabla:
+        // Headers tabla de resultados:
     ui->tablaResults->setColumnCount(2);
     QTableWidgetItem *nItem = new QTableWidgetItem();
     nItem->setText("Resultado");
@@ -19,13 +16,17 @@ ventanapalabras::ventanapalabras(QWidget *parent, Core *_core) :
     nItem = new QTableWidgetItem();
     nItem->setText("Palabra");
     ui->tablaResults->setHorizontalHeaderItem(1, nItem);
+
         // Lock de tamaños:
+    //  Primera columna más pequeña:
     ui->tablaResults->setColumnWidth(0, 80);
     ui->tablaResults->horizontalHeader()->setSectionResizeMode(QHeaderView::Fixed);
-    ui->tablaResults->setRowCount(0);
-        // Print datos de autómata:
+    ui->tablaResults->setRowCount(0); // Limpia las líneas
+
+        // Datos de autómata:
     char *texto = new char[100];
-    char *aux = new char[100];
+    char *aux = new char[5];
+
         // - Número de Símbolos
     sprintf(texto, "[%d]: ", c_data->n_simbolos);
     for(int i = 0; i < c_data->n_simbolos; ++i){
@@ -33,9 +34,11 @@ ventanapalabras::ventanapalabras(QWidget *parent, Core *_core) :
         strcat(texto, aux);
     }
     ui->lNS->setText(texto);
+
         // - Número de Nodos
     sprintf(texto, "%d", c_data->n_nodos);
     ui->lNN->setText(texto);
+
         // - Nodos Finales:
     sprintf(texto, "[%d]: ", c_data->n_finales);
     for(int i = 0; i < c_data->n_finales; ++i){
@@ -45,30 +48,38 @@ ventanapalabras::ventanapalabras(QWidget *parent, Core *_core) :
     ui->lNF->setText(texto);
 }
 
-ventanapalabras::~ventanapalabras()
-{
+ventanapalabras::~ventanapalabras(){
     delete ui;
 }
 
-void ventanapalabras::on_bCheckPalabra_clicked()
-{
+void ventanapalabras::on_bCheckPalabra_clicked(){
+        // Obtiene palabra de box:
+    ui->lNoValida->setText("");
     char *palabra = new char[100];
     strcpy(palabra, ui->boxPalabra->text().toStdString().c_str());
-    if((int) palabra[0] == 0){
+        // Filtros:
+    if((int) palabra[0] == 0){ // Palabra vacía
         printf("Palabra vacía.\n");
         return;
     }
-    if(!(c_data->precheckWord(palabra))){
+    if(!(c_data->precheckWord(palabra))){ // Palabra fuera del alfabeto
         printf("Palabra no válida.\n");
+        ui->lNoValida->setText("Palabra no válida");
         return;
     }
+
         // Se lee la palabra:
-    ui->tablaLog->clear();
+    printf("Se leerá palabra %s\n", palabra);
+    ui->tablaLog->clear(); // Limpia tabla de log
     ++currPalabra;
 
-    printf("Se leerá palabra %s\n", palabra);
     QListWidgetItem *nItem;
-    bool aceptada = c_data->checkWord(palabra, &(c_data->nodos[0]), ui->tablaLog);
+    bool aceptada = c_data->checkWord(
+        palabra,              // Palabra original
+        &(c_data->nodos[0]),  // Dirección de memoria del primer nodo (inicial)
+        ui->tablaLog          // Referencia a la tabla de log
+    ); // Se procesa la palabra
+
     if(aceptada){ // Si la palabra se aceptó
         nItem = new QListWidgetItem("Palabra aceptada.");
         nItem->setBackground(Qt::green);
@@ -81,13 +92,17 @@ void ventanapalabras::on_bCheckPalabra_clicked()
 }
 
 void ventanapalabras::addLog(QListWidgetItem *nItem){
+    /* Añade línea a tablaLog */
+
     ui->tablaLog->addItem(nItem);
-    ui->tablaLog->scrollToBottom();
+    ui->tablaLog->scrollToBottom(); // Va al final de la lista
 }
 
 void ventanapalabras::addResult(char *texto, bool aceptada){
+    /* Añade línea a tablaResults */
+
     int nRow = ui->tablaResults->rowCount();
-        // Palabra:
+        // Agrega palabra:
     ui->tablaResults->insertRow(nRow);
     QTableWidgetItem *nItem = new QTableWidgetItem(texto);
     ui->tablaResults->setItem(nRow, 1, nItem);
@@ -99,6 +114,7 @@ void ventanapalabras::addResult(char *texto, bool aceptada){
     }else{
         nItem->setBackground(Qt::red);
     }
+        // Agrega:
     ui->tablaResults->setItem(nRow, 0, nItem);
 }
 
