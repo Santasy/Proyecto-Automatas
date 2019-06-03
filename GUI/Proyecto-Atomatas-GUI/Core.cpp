@@ -182,6 +182,7 @@ bool Core::readFromFile(char *ruta){
             }
         }
         archivo >> n_finales;
+        nodos_f.clear();
         for(i = 0; i < n_finales; ++i){
             archivo >> id;
             nodos_f.push_back(id);

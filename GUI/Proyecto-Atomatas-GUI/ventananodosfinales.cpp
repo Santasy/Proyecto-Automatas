@@ -11,10 +11,8 @@ ventanaNodosFinales::ventanaNodosFinales(QWidget *parent, Core *_core) :
 {
     ui->setupUi(this);
     c_data = _core;
-    int nNodosFinales = c_data->n_finales;
-    printf("NFI: %d\n", nNodosFinales);
 
-    int nCol = nNodosFinales;
+    int nCol = c_data->n_finales;
     ui->nodosFinales->setColumnCount(nCol);
 
 }
@@ -27,7 +25,7 @@ ventanaNodosFinales::~ventanaNodosFinales()
 void ventanaNodosFinales::on_buttonBox_accepted()
 {
     std::ofstream file;
-    file.open("test.txt", std::ios_base::app);
+    file.open("Automata.txt", std::ios_base::app);
 
     int cCount = ui->nodosFinales->columnCount();
 
@@ -41,7 +39,7 @@ void ventanaNodosFinales::on_buttonBox_accepted()
 
     file.close();
 
-    c_data->readFromFile("test.txt");
+    c_data->readFromFile("Automata.txt");
     ventanapalabras vP(this, c_data);
     vP.setModal(true);
     vP.exec();

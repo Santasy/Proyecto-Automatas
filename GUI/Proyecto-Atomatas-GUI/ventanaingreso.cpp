@@ -7,6 +7,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <QFileDialog>
 
 #include <vector>
 using namespace std;
@@ -20,7 +21,7 @@ ventanaIngreso::ventanaIngreso(QWidget *parent) : //Constructor
     ui->setupUi(this);
     c_data = new Core();
    ofstream archivo;
-   archivo.open("test.txt");
+   archivo.open("Automata.txt");
    archivo.close();
 }
 
@@ -53,7 +54,7 @@ ventanaIngreso::~ventanaIngreso()
 void ventanaIngreso::on_buttonBox_accepted()
 {
     ofstream file;
-    file.open("test.txt", ios_base::app);
+    file.open("Automata.txt", ios_base::app);
 
     c_data->n_simbolos = getNSimbolos();
     c_data->n_nodos = getNNodos();
@@ -90,7 +91,13 @@ void ventanaIngreso::on_buttonBox_accepted()
 
 void ventanaIngreso::on_bLeerArchivo_clicked()
 {
-    c_data->readFromFile("entrada.txt");
+    QFileDialog qFD;
+    qFD.setFileMode(QFileDialog::ExistingFiles);
+    //qFD.exec();
+    QString path = qFD.getOpenFileName(this, "Seleccionar archivo", ".", "Archivos de texto (*.txt)");
+    qFD.deleteLater();
+
+    c_data->readFromFile((char *) path.toStdString().c_str());
     ventanapalabras vP(this, c_data);
     if(vP.c_data->checkAutom()){
         vP.setModal(true);

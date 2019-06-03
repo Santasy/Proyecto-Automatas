@@ -67,7 +67,7 @@ ventanaTabla::~ventanaTabla()
 void ventanaTabla::on_buttonBox_accepted()
 {
     std::ofstream file;
-    file.open("test.txt", std::ios_base::app);
+    file.open("Automata.txt", std::ios_base::app);
 
     int rCount = ui->tableWidget->rowCount();
     int cCount = ui->tableWidget->columnCount();
