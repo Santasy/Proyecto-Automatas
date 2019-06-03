@@ -1,6 +1,8 @@
 #include "Core.h"
+#include <iostream>
 #include <vector>
 #include <queue>
+#include <QListWidget>
 
 #define PI 3.14159
 
@@ -19,20 +21,64 @@ bool Core::esFinal(nodo *n){
     return false;
 }
 
-bool Core::checkWord(char *palabra, nodo *actual){
+bool Core::checkWord(char *palabra, nodo *actual, QListWidget *tabla){
     int i;
-    if((int) palabra[0] != 0){
-        printf("Nodo %s analizando %c.\n", actual->id, palabra[0]);
-        return checkWord(palabra + 1, actual->enlaces[getSimIndex(palabra[0])]);
-    }else{
-        printf("Finalizado en nodo %s.\n", actual->id);
-        int id = atoi(actual->id + 1); // Obtiene el índice del nodo
-        for(i = 0; i < n_finales; ++i){ // Lo busca dentro de los finales
-            if(id == nodos_f[i])
-                return true;
-        }
+    if(actual == nullptr){
+        printf("Finalizando antes de leer palabra completa.\n");
         return false;
     }
+
+    if((int) palabra[0] != 0){
+        printf("Nodo %s analizando %c.\n", actual->id, palabra[0]);
+            /*-----Log a tabla-----*/
+        char *texto = new char[100];
+        char *final = new char[100];
+        nodo *enlace = actual->enlaces[getSimIndex(palabra[0])];
+
+        // Concatena el actual:
+        if(esFinal(actual)){
+            sprintf(texto, "(( %s )) -[%c]-> ", actual->id, palabra[0]);
+        }else{
+            sprintf(texto, " ( %s )  -[%c]-> ", actual->id, palabra[0]);
+        }
+
+        // Concatena el enlace:
+        QListWidgetItem *nItem = new QListWidgetItem();
+        if(enlace == nullptr){
+            strcat(texto, " | NULL");
+        }else{
+            if(esFinal(enlace)){
+                sprintf(final, "(( %s ))", enlace->id);
+                nItem->setForeground(Qt::blue);
+            }else{
+                sprintf(final, " ( %s )", enlace->id);
+            }
+            strcat(texto, final);
+        }
+        nItem->setText(texto);
+        tabla->addItem(nItem);
+        tabla->scrollToBottom();
+
+        return checkWord(palabra + 1, enlace, tabla);
+    }else{
+        printf("Finalizado en nodo %s.\n", actual->id);
+        return esFinal(actual);
+    }
+}
+
+bool Core::precheckWord(char *palabra){
+    for(int j = 0; (int) palabra[j] != 0; ++j){
+        bool valida = false;
+        for(int i = 0; i < n_simbolos; ++i){
+            if((char) simbolos[i].first == palabra[j]){
+                valida = true;
+                break;
+            }
+        }
+        if(!valida)
+            return false;
+    }
+    return true;
 }
 
 bool Core::checkAutom(){

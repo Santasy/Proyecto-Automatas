@@ -32,7 +32,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ingrese palabra:&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="boxPalabra">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -42,7 +42,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QListView" name="tablaLog">
+  <widget class="QListWidget" name="tablaLog">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -71,7 +71,7 @@
     <string>Procesar Palabra</string>
    </property>
   </widget>
-  <widget class="QTableView" name="tablaResults">
+  <widget class="QTableWidget" name="tablaResults">
    <property name="geometry">
     <rect>
      <x>390</x>
@@ -80,6 +80,27 @@
      <height>301</height>
     </rect>
    </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustIgnored</enum>
+   </property>
+   <property name="showGrid">
+    <bool>true</bool>
+   </property>
+   <property name="gridStyle">
+    <enum>Qt::SolidLine</enum>
+   </property>
+   <property name="rowCount">
+    <number>1</number>
+   </property>
+   <property name="columnCount">
+    <number>2</number>
+   </property>
+   <row/>
+   <column/>
+   <column/>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">

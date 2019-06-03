@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 #include "nodo.h"
 #include "nivel.h"
+#include <QListWidget>
 
 class Core{
 public:
@@ -23,10 +24,11 @@ public:
     bool saveToFile(char *ruta);
     bool toLog(char *texto);
 
-    bool checkWord(char *palabra, nodo *actual);
+    bool checkWord(char *palabra, nodo *actual, QListWidget *tabla);
     int getSimIndex(char c);
     bool checkAutom();
     bool esFinal(nodo *n);
+    bool precheckWord(char *palabra);
     /* ---------- */
 };
 
